@@ -15,8 +15,8 @@ const HomePage = () => {
           <Image src={item.imageUrl} alt={item.name} width={300} height={300} className='w-[95%] md:w-1/3 rounded-md'/>
           </div>
           <div className='flex justify-between mt-2'>
-         <h1 className='font-poppins pl-3'>{item.name}</h1>
-         <p className='font-poppins pr-3'>{item.county}</p>
+         <h1 className='font-poppins pl-3 text-sm'>{item.name}</h1>
+         <p className='font-poppins pr-3 text-sm'>{item.county}</p>
          </div>
           <div className='flex flex-row justify-between items-center mt-2'>
             <div className='flex gap-3'>
