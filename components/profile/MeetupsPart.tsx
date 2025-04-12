@@ -11,8 +11,8 @@ const MeetupsPart = () => {
            <div key={item.id} className='flex flex-row gap-3 hover:shadow-sm hover:rounded-md p-1 hover:border'>
                <Image src={item.imageUrl} alt={item.name} width={300} height={300} className='w-[45%] md:w-1/3 rounded-md'/>
                <div className='text-left'>
-                   <h1 className='font-poppins'>{item.name}</h1>
-                   <h1 className='font-poppins'>{item.county}</h1>
+                   <h1 className='font-poppins text-sm'>{item.name}</h1>
+                   <h1 className='font-poppins text-sm'>{item.county}</h1>
                    </div>
 
            </div>
