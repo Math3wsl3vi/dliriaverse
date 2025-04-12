@@ -14,10 +14,11 @@ const MeetupsPart = () => {
                    <h1 className='font-poppins'>{item.name}</h1>
                    <h1 className='font-poppins'>{item.county}</h1>
                    </div>
-   
+
            </div>
           ))}
           </div>
+          <div className='h-[85px]'></div>
        </div>
   )
 }

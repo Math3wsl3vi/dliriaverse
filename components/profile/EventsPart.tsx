@@ -18,6 +18,8 @@ const EventsPart = () => {
            </div>
           ))}
           </div>
+          <div className='h-[85px]'></div>
+
        </div>
   )
 }

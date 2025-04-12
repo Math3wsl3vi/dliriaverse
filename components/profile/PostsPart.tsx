@@ -18,6 +18,8 @@ const PostsPart = () => {
         </div>
        ))}
        </div>
+       <div className='h-[85px]'></div>
+
     </div>
   )
 }
