@@ -11,7 +11,7 @@ const Navbar = () => {
     const handleLogout = () => {
         auth.signOut();
         localStorage.removeItem("user");
-        router.push("/auth");
+        router.push("/");
         setSidebarOpen(false);
       };
     
