@@ -21,10 +21,9 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
 export const metadata: Metadata = {
-  title: "Hazina ",
-  description: "Your All-in-One Financial Powerhouse",
+  title: "DLiria Verse ",
+  description: "Share memories",
 };
 
 export default function RootLayout({
