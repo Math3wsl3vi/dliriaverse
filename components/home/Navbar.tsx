@@ -1,19 +1,11 @@
 "use client"
-import { auth } from '@/configs/firebaseConfig'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const Navbar = () => {
-    const router = useRouter();
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const handleLogout = () => {
-        auth.signOut();
-        localStorage.removeItem("user");
-        router.push("/");
-        setSidebarOpen(false);
-      };
+
     
   return (
     <div className='flex items-center justify-between md:px-10 px-5 py-5 bg-slate-50'>
@@ -40,9 +32,7 @@ const Navbar = () => {
         <div className="flex flex-col mt-10 px-6">
           <h1 className='font-poppins'>Notifications</h1>
           <p className='font-poppins text-gray-500'>You have no notifications for now</p>
-          <button className="mt-4 w-full text-center bg-green-1 text-white py-2 rounded" onClick={handleLogout}>
-            Logout
-          </button>
+          
         </div>
       </div>
     </div>
