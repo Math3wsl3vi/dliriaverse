@@ -1,105 +1,55 @@
-# 💰 Hazina – Personal & Business Finance Platform
+# Dliria Verse 🌍✨
 
-Hazina is a modern, mobile-first web application designed to help individuals and business owners take full control of their finances. It offers budgeting tools, investment resources, financial consultation, and essential accounting utilities – all tailored to your unique financial journey.
+**Dliria Verse** is a social media platform where users share *hidden gems*, *cool places they've visited*, and *social events* like meetups, bike rides, and drive-ups. It's built for adventurers, explorers, and community lovers to discover new places and connect with like-minded people.
 
----
+## 🚀 Features
 
-## 🌟 Key Features
+- 🧭 **Discover Hidden Gems** – Explore cool spots shared by the community.
+- 📸 **Photo Uploads** – Share your experiences with photos.
+- 📍 **Tag Locations** – Pin exact spots on the map.
+- 🗓️ **Create & RSVP to Events** – Join community-led adventures and meetups.
+- 🧑‍🤝‍🧑 **Follow & Interact** – Follow friends and engage with their content.
+- 💬 **Comment & Like** – React to and discuss shared places.
+- 🌙 **Dark Mode Support** – Sleek visuals for day or night browsing.
 
-### 🔹 Personal Finance
-- **50/30/20 Budgeting Rule** implementation
-- **Savings tracker** and target goals
-- **Investment Hub**:
-  - Local & Global investment options
-  - Categorized by risk level: Low, Moderate, High
-  - Option to invest directly or learn via paid guides (e.g., Ksh. 100)
-- **Debt Management** tools and strategies
-- **Financial Advisor Booking**:
-  - 60-minute consultation
-  - Pay in advance (cancel 24hrs in advance)
+## 🛠️ Tech Stack
 
-### 🔸 Business Finance
-- **Income & Expense Tracking**
-- **Invoicing and Receivables**
-- **Basic Financial Reports**
-- **Business Budgeting Tools**
-- **Accounting Consultation Booking**
-  - Tiered pricing (e.g., Sole Proprietorship: Ksh. 750 / Company: Ksh. 2000)
+- **Frontend:** Next.js 14, Tailwind CSS, Shadcn UI
+- **Backend:** Firebase (Firestore, Authentication)
+- **Mobile Support:** Fully responsive with PWA support
+- **Image Uploads:** Firebase Storage / UploadThing
+- **State Management:** Zustand
 
-### 📈 Today’s Snapshot
-- Real-time investment opportunities and analysis (e.g., bond offers)
-- Updated by an internal analyst
-- Subscription-based access
+## 📸 Screenshots
 
----
+_Coming soon..._
 
-## 💳 Monetization Streams
-- Paid financial advice sessions
-- Monthly subscription (Personal / Business)
-- One-time purchase of investment materials
-- Affiliate commissions (e.g., MMF registrations via Etica Ltd)
-
----
-
-## 🔐 User Roles
-- **User (Personal / Business)**: Access to selected tools and subscriptions
-- **Analyst/Admin**:
-  - Post live investment updates
-  - Manage user categories
-  - View booked sessions & payment logs
-
----
-
-## 🧰 Tech Stack
-
-| Layer        | Tech Stack                          |
-| ------------ | ----------------------------------- |
-| Frontend     | Next.js, React, Tailwind CSS        |
-| State Mgmt   | Zustand / Context API               |
-| Backend      | Firebase / Express.js               |
-| Database     | Firestore (Realtime & Structured)   |
-| Auth         | Firebase Auth / Clerk               |
-| Payments     | M-Pesa (Daraja API), Stripe (Global)|
-| OCR Feature  | Browser `getUserMedia()` or OCR API |
-| PWA Support  | Full PWA setup with offline caching |
-
----
-
-
----
-
-## 🔧 Getting Started (Dev Setup)
+## ⚙️ Installation
 
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/hazina.git
-cd hazina
-
-# Install dependencies
+git clone https://github.com/yourusername/dliria-verse.git
+cd dliria-verse
 npm install
-
-# Run locally
 npm run dev
 
-# Build for production
-npm run build
-🧪 Future Features
-Native mobile app (React Native or Flutter)
+🤝 Contribution
+Feel free to fork this repo and open a pull request with suggestions or improvements.
 
-Push notifications (web & mobile)
+bash
+Copy
+Edit
+# Fork it 🍴
+# Create your feature branch 🚧
+git checkout -b feature/awesome-feature
 
-OCR for automatic invoice entry
+# Commit your changes ✅
+git commit -m 'Add some awesome feature'
 
-Bank & SACCO API integrations
+# Push to the branch 📤
+git push origin feature/awesome-feature
 
-Forum/Community section
+# Open a pull request 🔁
+📄 License
+This project is licensed under the MIT License.
 
-🤝 Partnerships & Licensing
-Hazina works with trusted financial service providers like Etica Ltd, earning affiliate commissions on user conversions.
-All rights reserved © 2025 Mantle Networks.
-
-👤 Author
-math3wsl3vi
-Founder @ Mantle Networks
-"Empowering people through financial clarity and simplicity."
-
+Built with 🖤 by Batman!
