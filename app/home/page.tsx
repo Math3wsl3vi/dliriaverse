@@ -22,12 +22,12 @@ const HomePage = () => {
               </div>
               <div className='pl-3 grid grid-cols-2 items-center gap-1'>
               <Image src='/images/bookmark.png' alt={item.name} width={20} height={20} className=''/>
-              <h1 className='font-poppins'> {item.likes}</h1>
+              <h1 className='font-poppins'> {item.bookmarks}</h1>
               </div>
             </div>
             <div className='pr-3 grid grid-cols-2 items-center gap-1'>
               <Image src='/images/star.png' alt={item.name} width={20} height={20} className=''/>
-              <h1 className='font-poppins'> {item.likes}</h1>
+              <h1 className='font-poppins'> {item.rating}</h1>
               </div>
           </div>
         </div>
