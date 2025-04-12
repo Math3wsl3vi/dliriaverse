@@ -63,6 +63,7 @@ const TopPart = () => {
           className="rounded-full w-32 h-32 object-center"
         />
         <h1 className="font-poppins">math3wsl3vi</h1>
+        <h1 className="pl-3 font-poppins text-sm text-gray-500">Small About section</h1>
       </div>
     </div>
   );

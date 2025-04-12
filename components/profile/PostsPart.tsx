@@ -5,7 +5,7 @@ import React from 'react'
 const PostsPart = () => {
   return (
     <div className='p-2'>
-        <h1 className='font-poppins font-semibold ml-2 text-xl'>My posts</h1>
+        <h1 className='font-poppins font-semibold ml-2 text-xl mt-4'>My posts</h1>
         <div className='flex flex-col gap-4 p-2'>
        {myUploads.map((item)=>(
         <div key={item.id} className='flex flex-row gap-3 hover:shadow-sm hover:rounded-md p-1 hover:border'>
