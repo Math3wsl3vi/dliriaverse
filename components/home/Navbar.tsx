@@ -38,15 +38,8 @@ const Navbar = () => {
         </button>
 
         <div className="flex flex-col mt-10 px-6">
-          <Link href="/" className="py-2 text-lg border-b" onClick={() => setSidebarOpen(false)}>
-            Home
-          </Link>
-          <Link href="/profile" className="py-2 text-lg border-b" onClick={() => setSidebarOpen(false)}>
-            Settings
-          </Link>
-          <Link href="/profile" className="py-2 text-lg border-b" onClick={() => setSidebarOpen(false)}>
-            Profile
-          </Link>
+          <h1 className='font-poppins'>Notifications</h1>
+          <p className='font-poppins text-gray-500'>You have no notifications for now</p>
           <button className="mt-4 w-full text-center bg-green-1 text-white py-2 rounded" onClick={handleLogout}>
             Logout
           </button>
