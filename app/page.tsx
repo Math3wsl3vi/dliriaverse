@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white flex flex-col justify-center items-center px-6 py-12 relative">
       {/* Title Section */}
-      <h1 className="text-4xl sm:text-5xl font-poppins text-gray-900 mb-4 tracking-wide z-10">D L I R I A V E R S E</h1>
+      <h1 className="text-4xl sm:text-4xl font-poppins text-gray-900 mb-4 tracking-wide z-10">D L I R I A V E R S E</h1>
       <p className="text-xl sm:text-2xl font-poppins text-gray-600 mb-8 text-center max-w-xl z-10">
         Discover, Share, and Explore Kenya in a way that feels yours.
       </p>
