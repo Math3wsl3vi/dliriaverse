@@ -104,7 +104,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-white pt-6 px-4">
+    <div className="min-h-screen flex flex-col items-center bg-white pt-6 px-4 font-poppins">
       {/* Pinterest-style Image Collage */}
       <div className="relative w-full max-w-sm h-[300px] mb-4">
         <div className="absolute top-0 left-0 w-24 h-32 rounded-xl overflow-hidden z-20 shadow-md border-4 border-white">
@@ -125,7 +125,7 @@ const LoginPage = () => {
       </div>
 
       {/* Auth Card */}
-      <Card className="w-full max-w-sm p-6 shadow-xl rounded-2xl">
+      <Card className="w-full max-w-sm p-6 shadow-xl rounded-2xl font-poppins">
         <CardHeader className="text-center">
           <CardTitle className="text-lg">Welcome to Dliria Verse</CardTitle>
           <CardDescription>{isLogin ? "Login to your account" : "Create a new account"}</CardDescription>
@@ -184,7 +184,7 @@ const LoginPage = () => {
 
         <CardFooter className="justify-center">
           <p
-            className="text-sm cursor-pointer text-gray-600"
+            className="text-sm cursor-pointer text-bluehee-600"
             onClick={() => setIsLogin(!isLogin)}
           >
             {isLogin ? "Need an account? Sign Up" : "Already have an account? Login"}
