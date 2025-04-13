@@ -11,6 +11,7 @@ import {
 import type { User } from "firebase/auth";
 import { auth } from "@/configs/firebaseConfig";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -26,7 +27,7 @@ const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [authLoading, setAuthLoading] = useState(true); // 🔹 New state to track auth status
+  const [authLoading, setAuthLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -34,13 +35,12 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [resetSuccess, setResetSuccess] = useState("");
 
-  // ✅ Only navigate if user is found
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        router.replace("/"); // 🔹 Prevents multiple redirects
+        router.replace("/");
       }
-      setAuthLoading(false); // 🔹 Ensure UI loads after check
+      setAuthLoading(false);
     });
 
     return () => unsubscribe();
@@ -48,7 +48,6 @@ const LoginPage = () => {
 
   const handleAuth = async (event: React.FormEvent) => {
     event.preventDefault();
-
     setLoading(true);
     setError("");
 
@@ -56,8 +55,6 @@ const LoginPage = () => {
       let userCredential;
       if (!isLogin) {
         userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      
-        // ✅ Save the display name to Firebase Auth
         await updateProfile(userCredential.user, {
           displayName: name,
         });
@@ -66,11 +63,7 @@ const LoginPage = () => {
       }
 
       const user: User = userCredential.user;
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ uid: user.uid, email: user.email })
-      );
-
+      localStorage.setItem("user", JSON.stringify({ uid: user.uid, email: user.email }));
       router.replace("/home");
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -102,7 +95,6 @@ const LoginPage = () => {
     }
   };
 
-  // ✅ Prevent rendering while checking auth state
   if (authLoading) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
@@ -112,67 +104,98 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="flex justify-center items-center w-full h-screen">
-      <Card className="w-[350px]">
-        <CardHeader className="flex items-center flex-col">
-          <CardTitle>Welcome to DLiria Verse</CardTitle>
-          <CardDescription>{isLogin ? "Login To Your Account" : "Create an Account"}</CardDescription>
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-          {resetSuccess && <p className="text-green-500 text-sm">{resetSuccess}</p>}
+    <div className="min-h-screen flex flex-col items-center bg-white pt-6 px-4">
+      {/* Pinterest-style Image Collage */}
+      <div className="relative w-full max-w-sm h-[300px] mb-4">
+        <div className="absolute top-0 left-0 w-24 h-32 rounded-xl overflow-hidden z-20 shadow-md">
+          <Image src="/images/gallery5.jpg" alt="img1" fill className="object-cover" />
+        </div>
+        <div className="absolute top-10 right-0 w-28 h-28 rounded-xl overflow-hidden z-10 shadow-md">
+          <Image src="/images/gallery6.jpg" alt="img2" fill className="object-cover" />
+        </div>
+        <div className="absolute top-10 left-20 w-[200px] h-[240px] rounded-xl overflow-hidden z-30 shadow-xl">
+          <Image src="/images/gallery10.jpeg" alt="img3" fill className="object-cover" />
+        </div>
+        <div className="absolute bottom-0 right-8 w-20 h-20 rounded-xl overflow-hidden z-20 shadow-md">
+          <Image src="/images/gallery8.jpeg" alt="img4" fill className="object-cover" />
+        </div>
+        <div className="absolute -bottom-2 left-0 w-32 h-32 rounded-xl overflow-hidden z-20 shadow-md">
+          <Image src="/images/gallery12.jpeg" alt="img4" fill className="object-cover" />
+        </div>
+      </div>
+
+      {/* Auth Card */}
+      <Card className="w-full max-w-sm p-6 shadow-xl rounded-2xl">
+        <CardHeader className="text-center">
+          <CardTitle className="text-lg">Welcome to Dliria Verse</CardTitle>
+          <CardDescription>{isLogin ? "Login to your account" : "Create a new account"}</CardDescription>
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+          {resetSuccess && <p className="text-green-500 text-sm mt-2">{resetSuccess}</p>}
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleAuth}>
-            <div className="grid w-full items-center gap-4">
+            <div className="grid gap-4">
               {!isLogin && (
-                <div className="flex flex-col space-y-1.5">
+                <div>
                   <Label htmlFor="name">Name</Label>
                   <Input id="name" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
               )}
-              <div className="flex flex-col space-y-1.5">
+              <div>
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
-              <div className="flex flex-col space-y-1.5 relative">
+              <div className="relative">
                 <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    placeholder="Password"
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="absolute right-3 top-2 text-gray-500"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
-                  </button>
-                </div>
+                <Input
+                  id="password"
+                  placeholder="Password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-9 text-gray-500"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
+                </button>
               </div>
+              <button
+                className="w-full bg-navy-1 text-white font-medium py-2 rounded-xl mt-2"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "Processing..." : isLogin ? "Login" : "Sign Up"}
+              </button>
             </div>
-            <button className="w-full bg-navy-1 text-white p-2 rounded mt-4" type="submit" disabled={loading}>
-              {loading ? "Processing..." : isLogin ? "Login" : "Sign Up"}
-            </button>
           </form>
-
           {isLogin && (
             <p
-              className="text-sm cursor-pointer text-blue-500 text-center mt-2"
+              className="text-sm text-blue-500 text-center mt-3 cursor-pointer"
               onClick={handleResetPassword}
             >
               Forgot Password?
             </p>
           )}
         </CardContent>
-        <CardFooter className="flex justify-center mt-2">
-          <p className="text-sm cursor-pointer text-gray-600" onClick={() => setIsLogin(!isLogin)}>
+
+        <CardFooter className="justify-center">
+          <p
+            className="text-sm cursor-pointer text-gray-600"
+            onClick={() => setIsLogin(!isLogin)}
+          >
             {isLogin ? "Need an account? Sign Up" : "Already have an account? Login"}
           </p>
         </CardFooter>
       </Card>
+
+      {/* Terms */}
+      <p className="text-xs text-gray-400 text-center mt-6 max-w-xs">
+        By continuing, you agree to {"Dliria verse's"} <span className="text-blue-600 underline">Terms</span> & <span className="text-blue-600 underline">Privacy Policy</span>.
+      </p>
     </div>
   );
 };
