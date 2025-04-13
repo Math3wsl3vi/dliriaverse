@@ -8,21 +8,28 @@ import TopPart from "@/components/profile/TopPart";
 import Image from "next/image";
 
 const ProfilePage = () => {
-  const [activeSection, setActiveSection] = useState<"posts" | "events" | "meetups">("posts");
+  const [activeSection, setActiveSection] = useState<
+    "posts" | "events" | "meetups"
+  >("posts");
 
   return (
     <div>
       {/* Top Part */}
       <TopPart />
+      
 
       {/* Toggle Icons */}
-      <div className="flex justify-between px-20">
+      <div className="flex justify-between px-20 items-center gap-2">
         <Image
           src="/images/more.png"
           alt="Posts"
           width={24}
           height={24}
-          className="cursor-pointer object-contain"
+          className={`cursor-pointer object-contain ${
+            activeSection === "posts"
+              ? "opacity-100 grayscale-0"
+              : "opacity-50 grayscale"
+          }`}
           onClick={() => setActiveSection("posts")}
         />
         <h1>|</h1>
@@ -31,7 +38,11 @@ const ProfilePage = () => {
           alt="Events"
           width={24}
           height={24}
-          className="cursor-pointer object-contain"
+          className={`cursor-pointer object-contain ${
+            activeSection === "events"
+              ? "opacity-100 grayscale-0"
+              : "opacity-50 grayscale"
+          }`}
           onClick={() => setActiveSection("events")}
         />
         <h1>|</h1>
@@ -40,7 +51,11 @@ const ProfilePage = () => {
           alt="Meetups"
           width={26}
           height={26}
-          className="cursor-pointer object-contain"
+          className={`cursor-pointer object-contain ${
+            activeSection === "meetups"
+              ? "opacity-100 grayscale-0"
+              : "opacity-50 grayscale"
+          }`}
           onClick={() => setActiveSection("meetups")}
         />
       </div>
