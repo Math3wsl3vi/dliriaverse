@@ -107,19 +107,19 @@ const LoginPage = () => {
     <div className="min-h-screen flex flex-col items-center bg-white pt-6 px-4">
       {/* Pinterest-style Image Collage */}
       <div className="relative w-full max-w-sm h-[300px] mb-4">
-        <div className="absolute top-0 left-0 w-24 h-32 rounded-xl overflow-hidden z-20 shadow-md">
+        <div className="absolute top-0 left-0 w-24 h-32 rounded-xl overflow-hidden z-20 shadow-md border-4 border-white">
           <Image src="/images/gallery5.jpg" alt="img1" fill className="object-cover" />
         </div>
-        <div className="absolute top-10 right-0 w-28 h-28 rounded-xl overflow-hidden z-10 shadow-md">
+        <div className="absolute -top-5 right-5 w-28 h-28 rounded-xl overflow-hidden z-10 shadow-md border-4 border-white">
           <Image src="/images/gallery6.jpg" alt="img2" fill className="object-cover" />
         </div>
-        <div className="absolute top-10 left-20 w-[200px] h-[240px] rounded-xl overflow-hidden z-30 shadow-xl">
+        <div className="absolute top-10 left-20 w-[200px] h-[240px] rounded-xl overflow-hidden z-30 shadow-xl border-4 border-white">
           <Image src="/images/gallery10.jpeg" alt="img3" fill className="object-cover" />
         </div>
-        <div className="absolute bottom-0 right-8 w-20 h-20 rounded-xl overflow-hidden z-20 shadow-md">
+        <div className="absolute bottom-0 right-12 w-20 h-20 rounded-xl overflow-hidden z-20 shadow-md border-4 border-white">
           <Image src="/images/gallery8.jpeg" alt="img4" fill className="object-cover" />
         </div>
-        <div className="absolute -bottom-2 left-0 w-32 h-32 rounded-xl overflow-hidden z-20 shadow-md">
+        <div className="absolute -bottom-2 -left-0 w-32 h-32 rounded-xl overflow-hidden z-20 shadow-md border-4 border-white">
           <Image src="/images/gallery12.jpeg" alt="img4" fill className="object-cover" />
         </div>
       </div>
@@ -193,7 +193,7 @@ const LoginPage = () => {
       </Card>
 
       {/* Terms */}
-      <p className="text-xs text-gray-400 text-center mt-6 max-w-xs">
+      <p className="text-xs text-gray-400 text-center mt-6 max-w-xs pb-4">
         By continuing, you agree to {"Dliria verse's"} <span className="text-blue-600 underline">Terms</span> & <span className="text-blue-600 underline">Privacy Policy</span>.
       </p>
     </div>
