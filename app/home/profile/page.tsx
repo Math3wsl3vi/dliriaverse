@@ -13,13 +13,12 @@ const ProfilePage = () => {
   >("posts");
 
   return (
-    <div>
+    <div className="mt-[90px] ml-0 px-4 w-full">
       {/* Top Part */}
       <TopPart />
-      
 
       {/* Toggle Icons */}
-      <div className="flex justify-between px-20 items-center gap-2">
+      <div className="flex justify-center md:justify-between items-center gap-2 my-4 md:w-[calc(100%-250px)] px-20 ">
         <Image
           src="/images/more.png"
           alt="Posts"
@@ -61,7 +60,7 @@ const ProfilePage = () => {
       </div>
 
       {/* Conditional Rendering Based on State */}
-      <div className="px-4 md:px-20">
+      <div>
         {activeSection === "posts" && <PostsPart />}
         {activeSection === "events" && <EventsPart />}
         {activeSection === "meetups" && <MeetupsPart />}

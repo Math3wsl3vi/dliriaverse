@@ -8,7 +8,7 @@ const Navbar = () => {
 
     
   return (
-    <div className='flex items-center justify-between md:px-10 px-5 py-5 bg-slate-50'>
+    <div className='flex items-center justify-between md:px-10 px-5 py-5 bg-slate-50 fixed top-0 w-full z-50'>
        <Link href='/home' className='text-lg'>D L I R I A V E R S E</Link>
        <div 
        className='border rounded-full border-gray-300 p-2 cursor-pointer'

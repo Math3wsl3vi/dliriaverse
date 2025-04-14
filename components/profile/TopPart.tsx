@@ -15,7 +15,7 @@ const TopPart = () => {
             setSidebarOpen(false);
           };
   return (
-    <div className="mt-5">
+    <div className="mt-5 md:w-[calc(100%-250px)]">
       <div className="flex items-end justify-end pr-4 cursor-pointer"
       onClick={() => setSidebarOpen(true)} 
       >
