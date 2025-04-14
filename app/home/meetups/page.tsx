@@ -28,10 +28,10 @@ const MeetupsPage = () => {
       isAdmin: false,
       chatOpen: false
     },
-    
+
   ]);
 
-  const toggleJoin = (id) => {
+  const toggleJoin = (id:number) => {
     setMeetups(meetups.map(meetup => 
       meetup.id === id ? { 
         ...meetup, 
