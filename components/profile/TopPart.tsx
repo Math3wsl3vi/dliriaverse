@@ -5,7 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const TopPart = () => {
+interface TopPartProps{
+  username:string;
+  profilePic: string;
+  email:string;
+  bio?:string
+}
+
+const TopPart: React.FC<TopPartProps> = ({ username, profilePic, bio }) => {
         const router = useRouter();
         const [sidebarOpen, setSidebarOpen] = useState(false);
         const handleLogout = () => {
@@ -58,16 +65,16 @@ const TopPart = () => {
       <div className="pl-3 flex flex-col items-center gap-3 mb-2">
        <div className="border-2 border-blue-300 p-1.5 rounded-full">
        <Image
-          src="/images/newpic.jpeg"
+          src={profilePic}
           alt="profile pic"
           width={150}
           height={150}
-          className="rounded-full w-32 h-32 object-center"
+          className="rounded-full w-32 h-32 object-cover"
         />
        </div>
         <Link href={'/home/edit'} className="p-2 bg-navy-1 text-white font-poppins rounded-full px-4 cursor-pointer">Edit Profile</Link>
-        <h1 className="font-poppins">math3wsl3vi</h1>
-        <h1 className="font-poppins text-sm text-gray-500 mb-5">Small About section</h1>
+        <h1 className="font-poppins capitalize">{username}</h1>
+        <h1 className="font-poppins text-sm text-gray-500 mb-5">{bio}</h1>
       </div>
     </div>
   );
