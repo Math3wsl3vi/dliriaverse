@@ -156,7 +156,7 @@ const UploadPic = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50 p-4 font-poppins">
-      <div className='h-[40px]'></div>
+      {/* <div className='h-[40px]'></div> */}
       <Card className="w-full max-w-md my-20">
         <CardHeader>
           <CardTitle className="text-center">Create New</CardTitle>
@@ -283,7 +283,7 @@ const UploadPic = () => {
           </Button>
         </CardContent>
       </Card>
-      <div className='h-[40px]'></div>
+      <div className='h-[140px]'></div>
     </div>
   )
 }
