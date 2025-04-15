@@ -6,7 +6,7 @@ import Link from "next/link";
 const HomePage = () => {
   return (
     <div className="mt-[80px] pt-3 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6">
         {uploadData.map((item) => (
           <div
             key={item.id}
@@ -25,12 +25,14 @@ const HomePage = () => {
               />
               <h1 className="font-poppins">math3wsl3vi</h1>
             </Link>
-            <div className="w-full aspect-[4/3] relative">
+            <div className="w-full relative">
               <Image
                 src={item.imageUrl}
                 alt={item.name}
-                fill
-                className=" object-cover"
+                width={900} 
+                height={900} 
+                className="object-cover w-full h-auto md:w-[400px] md:h-[300px]"
+                quality={100}
               />
             </div>
 
