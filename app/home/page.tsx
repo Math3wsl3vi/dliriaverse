@@ -138,7 +138,7 @@ const HomePage = () => {
                   width={20}
                   height={20}
                 />
-                <h1 className="font-poppins">{item.rating}</h1>
+                <h1 className="font-poppins">{item.rating}/10</h1>
               </div>
             </div>
             <div className="p-2">
