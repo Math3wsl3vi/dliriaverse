@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono,Poppins } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+import { UserProfileProvider } from "./home/context/UserProfileContext";
 
 
 const geistSans = Geist({
@@ -33,7 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en">
      <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}>
+      <UserProfileProvider>
+      <Toaster/>
         {children}
+        </UserProfileProvider>
       </body>
     </html>
   );

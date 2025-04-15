@@ -64,7 +64,7 @@ const LoginPage = () => {
 
       const user: User = userCredential.user;
       localStorage.setItem("user", JSON.stringify({ uid: user.uid, email: user.email }));
-      router.replace("/home");
+      router.replace("/profile-edit");
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
