@@ -5,6 +5,7 @@ import Link from "next/link";
 import { collection, onSnapshot, query, orderBy, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { firestore, auth } from '@/configs/firebaseConfig';
 import { onAuthStateChanged, User } from 'firebase/auth';
+import { useToast } from "@/hooks/use-toast";
 
 interface Post {
   id: string;
@@ -25,6 +26,8 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [optimisticLikes, setOptimisticLikes] = useState<Record<string, string[]>>({});
+  const { toast } = useToast();
 
   // Track auth state
   useEffect(() => {
@@ -40,12 +43,15 @@ const HomePage = () => {
       try {
         const fetchedPosts = snapshot.docs.map(doc => {
           const data = doc.data();
+          const postId = doc.id;  
+
+          const likes = optimisticLikes[postId] || data.likes || [];
           return {
             id: doc.id,
             name: data.name || data.caption || 'Untitled Post',
             imageUrl: data.images?.[0] || '/images/placeholder.jpg',
             county: data.location || 'Unknown County',
-            likes: data.likes || [], // Array of user IDs who liked
+            likes: likes, // Array of user IDs who liked
             bookmarks: data.bookmarks?.length || 0,
             rating: data.rating || 0,
             username: data.username || 'Unknown User',
@@ -72,31 +78,54 @@ const HomePage = () => {
 
   const handleLike = async (postId: string) => {
     if (!currentUser) {
-      alert('Please sign in to like posts');
+      toast({
+        title: 'Sign in required',
+        description: 'Please sign in to like posts',
+        variant: 'destructive',
+      });
       return;
     }
 
-    const postRef = doc(firestore, 'posts', postId);
     const post = posts.find(p => p.id === postId);
-
     if (!post) return;
 
+    // Optimistic update
+    const isLiked = post.likes.includes(currentUser.uid);
+    const newLikes = isLiked
+      ? post.likes.filter(id => id !== currentUser.uid)
+      : [...post.likes, currentUser.uid];
+
+    setOptimisticLikes(prev => ({
+      ...prev,
+      [postId]: newLikes
+    }));
+
     try {
-      if (post.likes.includes(currentUser.uid)) {
-        // User already liked - unlike
+      const postRef = doc(firestore, 'posts', postId);
+      if (isLiked) {
         await updateDoc(postRef, {
           likes: arrayRemove(currentUser.uid)
         });
       } else {
-        // User hasn't liked - like
         await updateDoc(postRef, {
           likes: arrayUnion(currentUser.uid)
         });
       }
     } catch (error) {
       console.error('Error updating like:', error);
+      // Revert optimistic update if there's an error
+      setOptimisticLikes(prev => ({
+        ...prev,
+        [postId]: post.likes // Revert to original likes
+      }));
+      toast({
+        title: 'Error',
+        description: 'Failed to update like',
+        variant: 'destructive',
+      });
     }
   };
+
 
   if (loading) {
     return <div className="mt-[80px] pt-3 max-w-7xl mx-auto text-center">
