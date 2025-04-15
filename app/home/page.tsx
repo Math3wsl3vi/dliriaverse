@@ -16,6 +16,7 @@ interface Post {
   username: string;
   profilePic: string;
   caption:string;
+  rate:string;
 }
 
 const HomePage = () => {
@@ -39,7 +40,8 @@ const HomePage = () => {
             rating: data.rating || 0,
             username: data.username || 'Unknown User', // Use username from post
             profilePic: data.profilePic || '/images/newpic.jpeg', // Use profilePic from post
-            caption:data.caption || ''
+            caption:data.caption || '',
+            rate:data.rate || ''
           };
         });
         setPosts(fetchedPosts);
@@ -138,11 +140,11 @@ const HomePage = () => {
                   width={20}
                   height={20}
                 />
-                <h1 className="font-poppins">{item.rating}/10</h1>
+                <h1 className="font-poppins">{item.rate}/10</h1>
               </div>
             </div>
             <div className="p-2">
-              <h1 className="pl-2 font-poppins text-sm">{item.caption}</h1>
+              <h1 className="pl-2 font-poppins text-sm capitalize">{item.caption}</h1>
             </div>
           </div>
         ))}
