@@ -93,7 +93,7 @@ const HomePage = () => {
                 height={40}
                 className="rounded-full w-10 h-10 object-cover"
               />
-              <h1 className="font-poppins">{item.username}</h1>
+              <h1 className="font-poppins capitalize">{item.username}</h1>
             </Link>
             <div className="w-full relative">
               <Image
@@ -107,7 +107,7 @@ const HomePage = () => {
             </div>
 
             <div className="flex justify-between mt-2 px-3">
-              <h1 className="font-poppins text-sm">{item.name}</h1>
+              <h1 className="font-poppins text-sm capitalize">{item.name}</h1>
               <p className="font-poppins text-sm">{item.county}</p>
             </div>
             <div className="flex justify-between items-center mt-2 px-3">
