@@ -1,10 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import EventsPart from "@/components/profile/EventsPart";
-import MeetupsPart from "@/components/profile/MeetupsPart";
-import PostsPart from "@/components/profile/PostsPart";
 import TopPart from "@/components/profile/TopPart";
-import Image from "next/image";
 import { auth, firestore } from '@/configs/firebaseConfig';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
@@ -18,7 +14,6 @@ interface UserProfile {
 }
 
 const ProfilePage = () => {
-  const [activeSection, setActiveSection] = useState<"posts" | "events" | "meetups">("posts");
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -92,7 +87,7 @@ const ProfilePage = () => {
       />
 
       {/* Rest of your component remains the same */}
-      <div className="flex justify-center md:justify-between items-center gap-2 my-4 md:w-[calc(100%-250px)] px-20">
+      {/* <div className="flex justify-center md:justify-between items-center gap-2 my-4 md:w-[calc(100%-250px)] px-20">
         <Image
           src="/images/more.png"
           alt="Posts"
@@ -137,7 +132,7 @@ const ProfilePage = () => {
         {activeSection === "posts" && <PostsPart />}
         {activeSection === "events" && <EventsPart />}
         {activeSection === "meetups" && <MeetupsPart />}
-      </div>
+      </div> */}
     </div>
   );
 };

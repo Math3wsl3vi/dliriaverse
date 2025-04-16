@@ -35,7 +35,7 @@ const TopPart: React.FC<TopPartProps> = ({ username, profilePic, bio }) => {
         >
           <button
             className="absolute top-4 right-4 text-gray-700 text-lg"
-            onClick={() => setSidebarOpen(false)}
+            onClick={() =>setSidebarOpen(false)}
           >
             <Image src="/images/close.png" alt="menu" height={20} width={20} />
           </button>
@@ -54,7 +54,7 @@ const TopPart: React.FC<TopPartProps> = ({ username, profilePic, bio }) => {
               Edit Profile
             </button>
             <button
-              className="mt-4 w-full text-center font-poppins bg-green-1 text-white py-2 rounded"
+              className="mt-4 w-full text-center font-poppins bg-navy-1 text-white py-2 rounded"
               onClick={handleLogout}
             >
               Logout

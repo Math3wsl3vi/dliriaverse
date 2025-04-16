@@ -35,7 +35,8 @@ const UploadPic = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [username, setUsername] = useState("");
-  const [profilePic, setProfilePic] = useState(""); // Add profilePic state
+  const [profilePic, setProfilePic] = useState("");
+  const [eventDate, setEventDate] = useState("");
 
   // Track auth state and get user profile
   useEffect(() => {
@@ -85,24 +86,24 @@ const UploadPic = () => {
   const handleUpload = async () => {
     // Validate rate first
     const numericRate = Number(rate);
-    if (isNaN(numericRate) || numericRate < 1 || numericRate > 10) {
+    if (uploadType === "post" && (isNaN(numericRate) || numericRate < 1 || numericRate > 10)) {
       toast({
-        title: 'Invalid Rating',
-        description: 'Please enter a rating between 1 and 10',
-        variant: 'destructive',
+        title: "Invalid Rating",
+        description: "Please enter a rating between 1 and 10",
+        variant: "destructive",
       });
       return;
     }
-  
+
     if (!currentUser || files.length === 0) {
       toast({
-        title: 'Error',
-        description: 'Please sign in to upload',
-        variant: 'destructive',
+        title: "Error",
+        description: "Please sign in to upload",
+        variant: "destructive",
       });
       return;
     }
-    
+
     setIsUploading(true);
 
     try {
@@ -128,7 +129,8 @@ const UploadPic = () => {
         images: imageUrls,
         caption,
         name,
-        rate: numericRate,
+        ...(uploadType === "post" && { rate: numericRate }),
+...(uploadType === "event" && { eventDate }),
         location,
         type: uploadType,
         createdAt: serverTimestamp(),
@@ -140,7 +142,10 @@ const UploadPic = () => {
         }),
       };
 
-      await addDoc(collection(firestore, "posts"), docData);
+      await addDoc(
+        collection(firestore, uploadType === "event" ? "events" : "posts"),
+        docData
+      );
 
       toast({
         title: "Success!",
@@ -279,34 +284,54 @@ const UploadPic = () => {
                   placeholder="Add location..."
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="rate" className="block text-sm font-medium">
-                  Your rating (1-10)
-                </Label>
-                <Input
-                  id="rate"
-                  type="number"
-                  min="1"
-                  max="10"
-                  value={rate}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (
-                      value === "" ||
-                      (Number(value) >= 1 && Number(value) <= 10)
-                    ) {
-                      setRate(value);
-                    }
-                  }}
-                  className="w-full"
-                  placeholder="Enter rating (1-10)"
-                />
-                {rate && (Number(rate) < 1 || Number(rate) > 10) && (
-                  <p className="text-xs text-red-500">
-                    Rating must be between 1 and 10
-                  </p>
-                )}
-              </div>
+              {uploadType === "post" && (
+                <div className="space-y-2">
+                  <Label htmlFor="rate" className="block text-sm font-medium">
+                    Your rating (1-10)
+                  </Label>
+                  <Input
+                    id="rate"
+                    type="number"
+                    min="1"
+                    max="10"
+                    value={rate}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (
+                        value === "" ||
+                        (Number(value) >= 1 && Number(value) <= 10)
+                      ) {
+                        setRate(value);
+                      }
+                    }}
+                    className="w-full"
+                    placeholder="Enter rating (1-10)"
+                  />
+                  {rate && (Number(rate) < 1 || Number(rate) > 10) && (
+                    <p className="text-xs text-red-500">
+                      Rating must be between 1 and 10
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {uploadType === "event" && (
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="eventDate"
+                    className="block text-sm font-medium"
+                  >
+                    Event Date
+                  </Label>
+                  <Input
+                    id="eventDate"
+                    type="date"
+                    value={eventDate}
+                    onChange={(e) => setEventDate(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+              )}
 
               <div className="space-y-2">
                 <Label htmlFor="caption" className="block text-sm font-medium">
