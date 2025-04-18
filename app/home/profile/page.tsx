@@ -5,6 +5,9 @@ import { auth, firestore } from '@/configs/firebaseConfig';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
+import PostsPart from "@/components/profile/PostsPart";
+import EventsPart from "@/components/profile/EventsPart";
+import BookmarksPart from "@/components/profile/BookmarksPart";
 
 interface UserProfile {
   username: string;
@@ -15,6 +18,8 @@ interface UserProfile {
 
 const ProfilePage = () => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [activeSection, setActiveSection] = useState<'posts' | 'events' | 'bookmarks'>('posts');
+
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -86,53 +91,42 @@ const ProfilePage = () => {
         bio={userProfile.bio}
       />
 
-      {/* Rest of your component remains the same */}
-      {/* <div className="flex justify-center md:justify-between items-center gap-2 my-4 md:w-[calc(100%-250px)] px-20">
-        <Image
-          src="/images/more.png"
-          alt="Posts"
-          width={24}
-          height={24}
-          className={`cursor-pointer object-contain ${
-            activeSection === "posts"
-              ? "opacity-100 grayscale-0"
-              : "opacity-50 grayscale"
-          }`}
-          onClick={() => setActiveSection("posts")}
-        />
-        <h1>|</h1>
-        <Image
-          src="/images/event.png"
-          alt="Events"
-          width={24}
-          height={24}
-          className={`cursor-pointer object-contain ${
-            activeSection === "events"
-              ? "opacity-100 grayscale-0"
-              : "opacity-50 grayscale"
-          }`}
-          onClick={() => setActiveSection("events")}
-        />
-        <h1>|</h1>
-        <Image
-          src="/images/group.png"
-          alt="Meetups"
-          width={26}
-          height={26}
-          className={`cursor-pointer object-contain ${
-            activeSection === "meetups"
-              ? "opacity-100 grayscale-0"
-              : "opacity-50 grayscale"
-          }`}
-          onClick={() => setActiveSection("meetups")}
-        />
-      </div>
+<div className="flex justify-center md:justify-between items-center gap-4 my-4 md:w-[calc(100%-250px)] px-4">
+  <button
+    onClick={() => setActiveSection('posts')}
+    className={`px-4 py-2 rounded-md ${
+      activeSection === 'posts' ? 'bg-navy-1 text-white' : 'bg-gray-200'
+    }`}
+  >
+    My Posts
+  </button>
 
-      <div>
-        {activeSection === "posts" && <PostsPart />}
-        {activeSection === "events" && <EventsPart />}
-        {activeSection === "meetups" && <MeetupsPart />}
-      </div> */}
+  <button
+    onClick={() => setActiveSection('events')}
+    className={`px-4 py-2 rounded-md ${
+      activeSection === 'events' ? 'bg-navy-1 text-white' : 'bg-gray-200'
+    }`}
+  >
+    My Events
+  </button>
+
+  <button
+    onClick={() => setActiveSection('bookmarks')}
+    className={`px-4 py-2 rounded-md ${
+      activeSection === 'bookmarks' ? 'bg-navy-1 text-white' : 'bg-gray-200'
+    }`}
+  >
+    My Bookmarks
+  </button>
+</div>
+
+<div className="mt-6">
+  {activeSection === 'posts' && <PostsPart />}
+  {activeSection === 'events' && <EventsPart />}
+  {activeSection === 'bookmarks' && <BookmarksPart />}
+</div>
+
+
     </div>
   );
 };
