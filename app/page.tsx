@@ -47,7 +47,7 @@ export default function Home() {
         </div>
 
         {/* Overlapping Image */}
-        <div className="absolute -bottom-10 -right-4 sm:-right-10 sm:-bottom-12 w-48 h-64 rounded-2xl overflow-hidden shadow-md border-4 border-white">
+        <div className="absolute md:hidden -bottom-10 -right-4 sm:-right-10 sm:-bottom-12 w-48 h-64 rounded-2xl overflow-hidden shadow-md border-4 border-white">
           <Image 
             src={featuredImages[1]}
             alt="Overlapping"

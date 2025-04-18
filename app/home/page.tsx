@@ -28,6 +28,7 @@ const HomePage = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [optimisticLikes, setOptimisticLikes] = useState<Record<string, string[]>>({});
   const { toast } = useToast();
+  const [likedPostId, setLikedPostId] = useState<string | null>(null);
 
   // Track auth state
   useEffect(() => {
@@ -139,6 +140,13 @@ const HomePage = () => {
     </div>;
   }
 
+  const handleDoubleClickLike = (postId: string) => {
+    setLikedPostId(postId);
+    handleLike(postId);
+    setTimeout(() => setLikedPostId(null), 1000); // hide heart after 1 second
+  };
+  
+
   return (
     <div className="mt-[80px] pt-3 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6">
@@ -155,16 +163,22 @@ const HomePage = () => {
               <h1 className="font-poppins capitalize">{item.username}</h1>
             </Link>
             
-            <div className="w-full relative">
-              <Image
-                src={item.imageUrl}
-                alt={item.name}
-                width={900}
-                height={900}
-                className="object-cover w-full h-auto md:w-[400px] md:h-[300px]"
-                quality={100}
-              />
-            </div>
+            <div className="w-full relative" onDoubleClick={() => handleDoubleClickLike(item.id)}>
+  <Image
+    src={item.imageUrl}
+    alt={item.name}
+    width={900}
+    height={900}
+    className="object-cover w-full h-auto md:w-[400px] md:h-[300px]"
+    quality={100}
+  />
+  {likedPostId === item.id && (
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <Image src="/images/heart.png" alt="Liked" width={80} height={80} />
+    </div>
+  )}
+</div>
+
 
             <div className="flex justify-between mt-2 px-3">
               <h1 className="font-poppins text-sm capitalize">{item.name}</h1>
